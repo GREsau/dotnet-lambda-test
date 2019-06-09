@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace HelloWorld
 {
@@ -8,19 +9,22 @@ namespace HelloWorld
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddControllers()
+                .AddNewtonsoftJson();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(o => o.AllowAnyOrigin());
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
+            app.UseRouting();
+
+            app.UseCors(o => o.AllowAnyOrigin());
+
+            app.UseEndpoints(e => e.MapControllers());
         }
     }
 }

@@ -6,6 +6,7 @@ using Amazon.Lambda.RuntimeSupport;
 using Amazon.Lambda.Serialization.Json;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace HelloWorld
 {
@@ -13,9 +14,9 @@ namespace HelloWorld
     {
         public static Task Main(string[] args)
         {
-            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? EnvironmentName.Development;
+            var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? Environments.Development;
 
-            if (environmentName.Equals(EnvironmentName.Development, StringComparison.OrdinalIgnoreCase))
+            if (environmentName.Equals(Environments.Development, StringComparison.OrdinalIgnoreCase))
             {
                 return RunLocalWebHost(args);
             }
