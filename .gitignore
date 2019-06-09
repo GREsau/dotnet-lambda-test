@@ -1,4 +1,5 @@
 bin
 obj
+dist
 packaged.yaml
 .aws-sam
