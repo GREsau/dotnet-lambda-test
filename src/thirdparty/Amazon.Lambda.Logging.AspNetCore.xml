@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Amazon.Lambda.Logging.AspNetCore</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.Extensions.Configuration.IConfigurationExtensions">
+            <summary>
+            IConfiguration extensions
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.IConfigurationExtensions.GetLambdaLoggerOptions(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Creates LambdaLoggerOptions instance from "Lambda.Logging" section of the
+            specified configuration.
+            </summary>
+            <param name="configuration">Configuration to get settings from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.IConfigurationExtensions.GetLambdaLoggerOptions(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            Creates LambdaLoggerOptions instance from the specified subsection of the
+            configuration section.
+            </summary>
+            <param name="configuration">Configuration to get settings from.</param>
+            <param name="loggingSectionName">Name of section from which to get configuration data.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Logging.ILoggerBuilderExtensions">
+            <summary>
+            ILoggingBuilder extensions
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.ILoggerBuilderExtensions.AddLambdaLogger(Microsoft.Extensions.Logging.ILoggingBuilder)">
+            <summary>
+            Adds a Lambda logger provider with default options.
+            </summary>
+            <param name="builder">ILoggingBuilder to add Lambda logger to.</param>
+            <returns>Updated ILoggingBuilder.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.ILoggerBuilderExtensions.AddLambdaLogger(Microsoft.Extensions.Logging.ILoggingBuilder,Microsoft.Extensions.Logging.LambdaLoggerOptions)">
+            <summary>
+            Adds a Lambda logger provider with specified options.
+            </summary>
+            <param name="builder">ILoggingBuilder to add Lambda logger to.</param>
+            <param name="options">Lambda logging options.</param>
+            <returns>Updated ILoggingBuilder.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.ILoggerBuilderExtensions.AddLambdaLogger(Microsoft.Extensions.Logging.ILoggingBuilder,Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            Adds a Lambda logger provider with options loaded from the specified subsection of the
+            configuration section.
+            </summary>
+            <param name="builder">ILoggingBuilder to add Lambda logger to.</param>
+            <param name="configuration">IConfiguration to use when construction logging options.</param>
+            <param name="loggingSectionName">Name of the logging section with required settings.</param>
+            <returns>Updated ILoggingBuilder.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Logging.ILoggerFactoryExtensions">
+            <summary>
+            ILoggerFactory extensions
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.ILoggerFactoryExtensions.AddLambdaLogger(Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Adds a Lambda logger provider with default options.
+            </summary>
+            <param name="factory">ILoggerFactory to add Lambda logger to.</param>
+            <returns>Updated ILoggerFactory.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.ILoggerFactoryExtensions.AddLambdaLogger(Microsoft.Extensions.Logging.ILoggerFactory,Microsoft.Extensions.Logging.LambdaLoggerOptions)">
+            <summary>
+            Adds a Lambda logger provider with specified options.
+            </summary>
+            <param name="factory">ILoggerFactory to add Lambda logger to.</param>
+            <param name="options">Lambda logging options.</param>
+            <returns>Updated ILoggerFactory.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.ILoggerFactoryExtensions.AddLambdaLogger(Microsoft.Extensions.Logging.ILoggerFactory,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Adds a Lambda logger provider with options loaded from the "Lambda.Logging" subsection
+            of the specified configuration.
+            </summary>
+            <param name="factory">ILoggerFactory to add Lambda logger to.</param>
+            <param name="configuration">IConfiguration to use when construction logging options.</param>
+            <returns>Updated ILoggerFactory.</returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.ILoggerFactoryExtensions.AddLambdaLogger(Microsoft.Extensions.Logging.ILoggerFactory,Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            Adds a Lambda logger provider with options loaded from the specified subsection of the
+            configuration section.
+            </summary>
+            <param name="factory">ILoggerFactory to add Lambda logger to.</param>
+            <param name="configuration">IConfiguration to use when construction logging options.</param>
+            <param name="loggingSectionName">Name of the logging section with required settings.</param>
+            <returns>Updated ILoggerFactory.</returns>
+        </member>
+        <member name="T:Microsoft.Extensions.Logging.LambdaILoggerProvider">
+            <summary>
+            The ILoggerProvider implementation that is added to the ASP.NET Core logging system to create loggers
+            that will send the messages to the CloudWatch LogGroup associated with this Lambda function.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.LambdaILoggerProvider.#ctor(Microsoft.Extensions.Logging.LambdaLoggerOptions)">
+            <summary>
+            Creates the provider
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.LambdaILoggerProvider.CreateLogger(System.String)">
+            <summary>
+            Creates the logger with the specified category.
+            </summary>
+            <param name="categoryName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.LambdaILoggerProvider.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Microsoft.Extensions.Logging.LambdaLoggerOptions">
+            <summary>
+            Options that can be used to configure Lambda logging.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Logging.LambdaLoggerOptions.IncludeLogLevel">
+            <summary>
+            Flag to indicate if LogLevel should be part of logged message.
+            Default is true.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Logging.LambdaLoggerOptions.IncludeCategory">
+            <summary>
+            Flag to indicate if Category should be part of logged message.
+            Default is true.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Logging.LambdaLoggerOptions.IncludeNewline">
+            <summary>
+            Flag to indicate if logged messages should have a newline appended
+            to them, if one isn't already there.
+            Default is true.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Logging.LambdaLoggerOptions.IncludeException">
+            <summary>
+            Flag to indicate if Exception should be part of logged message.
+            Default is false.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Logging.LambdaLoggerOptions.IncludeEventId">
+            <summary>
+            Flag to indicate if EventId should be part of logged message.
+            Default is false.
+            </summary>
+        </member>
+        <member name="P:Microsoft.Extensions.Logging.LambdaLoggerOptions.Filter">
+            <summary>
+            Function used to filter events based on the log level.
+            Default value is null and will instruct logger to log everything.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.LambdaLoggerOptions.#ctor">
+            <summary>
+            Constructs instance of LambdaLoggerOptions with default values.
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.LambdaLoggerOptions.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructs instance of LambdaLoggerOptions with values from "Lambda.Logging"
+            subsection of the specified configuration.
+            The following configuration keys are supported:
+             IncludeLogLevel - boolean flag indicates if LogLevel should be part of logged message.
+             IncludeCategory - boolean flag indicates if Category should be part of logged message.
+             LogLevels - category-to-LogLevel mapping which indicates minimum LogLevel for a category.
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:Microsoft.Extensions.Logging.LambdaLoggerOptions.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            Constructs instance of LambdaLoggerOptions with values from specified
+            subsection of the configuration.
+            The following configuration keys are supported:
+             IncludeLogLevel - boolean flag indicates if LogLevel should be part of logged message.
+             IncludeCategory - boolean flag indicates if Category should be part of logged message.
+             LogLevels - category-to-LogLevel mapping which indicates minimum LogLevel for a category.
+            </summary>
+            <param name="configuration"></param>
+            <param name="loggingSectionName"></param>
+        </member>
+    </members>
+</doc>

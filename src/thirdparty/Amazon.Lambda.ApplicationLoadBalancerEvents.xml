@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Amazon.Lambda.ApplicationLoadBalancerEvents</name>
+    </assembly>
+    <members>
+        <member name="T:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest">
+            <summary>
+            For request coming in from Application Load Balancer.
+            https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.RequestContext">
+            <summary>
+            The request context for the request
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.Path">
+            <summary>
+            The url path for the caller
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.HttpMethod">
+            <summary>
+            The HTTP method used
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.Headers">
+            <summary>
+            The headers sent with the request
+            Note: Use this property when "Multi value headers" is disabled on ELB Target Group.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.MultiValueHeaders">
+            <summary>
+            The headers sent with the request
+            Note: Use this property when "Multi value headers" is enabled on ELB Target Group.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.QueryStringParameters">
+            <summary>
+            The query string parameters that were part of the request
+            Note: Use this property when "Multi value headers" is disabled on ELB Target Group.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.MultiValueQueryStringParameters">
+            <summary>
+            The query string parameters that were part of the request
+            Note: Use this property when "Multi value headers" is enabled on ELB Target Group.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.Body">
+            <summary>
+            The HTTP request body.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.IsBase64Encoded">
+            <summary>
+            True if the body of the request is base 64 encoded.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.ALBRequestContext">
+            <summary>
+            Information from the AWS resources invoke the Lambda function.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.ALBRequestContext.Elb">
+            <summary>
+            Information about the source Application Load Balancer.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.ElbInfo">
+            <summary>
+            Information from the source Elastic Load Balancer.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest.ElbInfo.TargetGroupArn">
+            <summary>
+            The Application Load Balancer target group arn.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerResponse">
+            <summary>
+            For response object for Lambda functions handling request from Application Load Balancer.
+            https://docs.aws.amazon.com/elasticloadbalancing/latest/application/lambda-functions.html
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerResponse.StatusCode">
+            <summary>
+            The HTTP status code for the request
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerResponse.StatusDescription">
+            <summary>
+            The HTTP status description for the request
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerResponse.Headers">
+            <summary>
+            The Http headers return in the response
+            Note: Use this property when "Multi value headers" is disabled on ELB Target Group.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerResponse.MultiValueHeaders">
+            <summary>
+            The Http headers return in the response
+            Note: Use this property when "Multi value headers" is enabled on ELB Target Group.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerResponse.Body">
+            <summary>
+            The response body
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerResponse.IsBase64Encoded">
+            <summary>
+            Flag indicating whether the body should be treated as a base64-encoded string
+            </summary>
+        </member>
+    </members>
+</doc>

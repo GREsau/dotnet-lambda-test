@@ -1,0 +1,399 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Amazon.Lambda.AspNetCoreServer</name>
+    </assembly>
+    <members>
+        <member name="F:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction.LAMBDA_CONTEXT">
+            <summary>
+            Key to access the ILambdaContext object from the HttpContext.Items collection.
+            </summary>
+        </member>
+        <member name="F:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction.LAMBDA_REQUEST_OBJECT">
+            <summary>
+            Key to access the Lambda request object from the HttpContext.Items collection. The object
+            can be either APIGatewayProxyRequest or ApplicationLoadBalancerRequest depending on the source of the event.
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.#ctor">
+            <summary>
+            Default Constructor. The ASP.NET Core Framework will be initialized as part of the construction.
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.#ctor(Amazon.Lambda.AspNetCoreServer.StartupMode)">
+            <summary>
+            
+            </summary>
+            <param name="startupMode">Configure when the ASP.NET Core framework will be initialized</param>
+        </member>
+        <member name="P:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.DefaultResponseContentEncoding">
+            <summary>
+            Defines the default treatment of response content.
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.RegisterResponseContentEncodingForContentType(System.String,Amazon.Lambda.AspNetCoreServer.ResponseContentEncoding)">
+            <summary>
+            Registers a mapping from a MIME content type to a <see cref="T:Amazon.Lambda.AspNetCoreServer.ResponseContentEncoding"/>.
+            </summary>
+            <remarks>
+            The mappings in combination with the <see cref="P:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.DefaultResponseContentEncoding"/>
+            setting will dictate if and how response content should be transformed before being
+            returned to the calling API Gateway instance.
+            <para>
+            The interface between the API Gateway and Lambda provides for repsonse content to
+            be returned as a UTF-8 string.  In order to return binary content without incurring
+            any loss or corruption due to transformations to the UTF-8 encoding, it is necessary
+            to encode the raw response content in Base64 and to annotate the response that it is
+            Base64-encoded.
+            </para><para>
+            <b>NOTE:</b>  In order to use this mechanism to return binary response content, in
+            addition to registering here any binary MIME content types that will be returned by
+            your application, it also necessary to register those same content types with the API
+            Gateway using either the console or the REST interface. Check the developer guide for
+            further information.
+            http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-payload-encodings-configure-with-console.html
+            http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-payload-encodings-configure-with-control-service-api.html
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.Init(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
+            <summary>
+            Method to initialize the web builder before starting the web host. In a typical Web API this is similar to the main function. 
+            Setting the Startup class is required in this method.
+            </summary>
+            <example>
+            <code>
+            protected override void Init(IWebHostBuilder builder)
+            {
+                builder
+                    .UseStartup&lt;Startup&gt;();
+            }
+            </code>
+            </example>
+            <param name="builder"></param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.CreateWebHostBuilder">
+            <summary>
+            Creates the IWebHostBuilder similar to WebHost.CreateDefaultBuilder but replacing the registration of the Kestrel web server with a 
+            registration for Lambda.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.Start">
+            <summary>
+            Should be called in the derived constructor 
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.CreateContext(Microsoft.AspNetCore.Http.Features.IFeatureCollection)">
+            <summary>
+            Creates a <see cref="T:Microsoft.AspNetCore.Hosting.Internal.HostingApplication.Context"/> object using the <see cref="T:Amazon.Lambda.AspNetCoreServer.Internal.LambdaServer"/> field in the class.
+            </summary>
+            <param name="features"><see cref="T:Microsoft.AspNetCore.Http.Features.IFeatureCollection"/> implementation.</param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.GetResponseContentEncodingForContentType(System.String)">
+            <summary>
+            Gets the response content encoding for a content type.
+            </summary>
+            <param name="contentType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.ErrorReport(System.Exception)">
+            <summary>
+            Formats an Exception into a string, including all inner exceptions.
+            </summary>
+            <param name="e"><see cref="T:System.Exception"/> instance.</param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.FunctionHandlerAsync(`0,Amazon.Lambda.Core.ILambdaContext)">
+            <summary>
+            This method is what the Lambda function handler points to.
+            </summary>
+            <param name="request"></param>
+            <param name="lambdaContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.ProcessRequest(Amazon.Lambda.Core.ILambdaContext,Microsoft.AspNetCore.Hosting.Internal.HostingApplication.Context,Amazon.Lambda.AspNetCoreServer.Internal.InvokeFeatures,System.Boolean)">
+            <summary>
+            Processes the current request.
+            </summary>
+            <param name="lambdaContext"><see cref="T:Amazon.Lambda.Core.ILambdaContext"/> implementation.</param>
+            <param name="context">The hosting application request context object.</param>
+            <param name="features">An <see cref="T:Amazon.Lambda.AspNetCoreServer.Internal.InvokeFeatures"/> instance.</param>
+            <param name="rethrowUnhandledError">
+            If specified, an unhandled exception will be rethrown for custom error handling.
+            Ensure that the error handling code calls 'this.MarshallResponse(features, 500);' after handling the error to return a the typed Lambda object to the user.
+            </param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.PostCreateWebHost(Microsoft.AspNetCore.Hosting.IWebHost)">
+            <summary>
+            This methid is called after the IWebHost is created from the IWebHostBuilder and the services have been configured. The
+            WebHost hasn't been started yet.
+            </summary>
+            <param name="webHost"></param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.PostCreateContext(Microsoft.AspNetCore.Hosting.Internal.HostingApplication.Context,`0,Amazon.Lambda.Core.ILambdaContext)">
+            <summary>
+            This method is called after the HostingApplication.Context has been created. Derived classes can overwrite this method to alter
+            the context before passing the request to ASP.NET Core to process the request.
+            </summary>
+            <param name="context"></param>
+            <param name="lambdaRequest"></param>
+            <param name="lambdaContext"></param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.PostMarshallRequestFeature(Microsoft.AspNetCore.Http.Features.IHttpRequestFeature,`0,Amazon.Lambda.Core.ILambdaContext)">
+            <summary>
+            This method is called after marshalling the incoming Lambda request
+            into ASP.NET Core's IHttpRequestFeature. Derived classes can overwrite this method to alter
+            the how the marshalling was done.
+            </summary>
+            <param name="aspNetCoreRequestFeature"></param>
+            <param name="lambdaRequest"></param>
+            <param name="lambdaContext"></param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.PostMarshallConnectionFeature(Microsoft.AspNetCore.Http.Features.IHttpConnectionFeature,`0,Amazon.Lambda.Core.ILambdaContext)">
+            <summary>
+            This method is called after marshalling the incoming Lambda request
+            into ASP.NET Core's IHttpConnectionFeature. Derived classes can overwrite this method to alter
+            the how the marshalling was done.
+            </summary>
+            <param name="aspNetCoreConnectionFeature"></param>
+            <param name="lambdaRequest"></param>
+            <param name="lambdaContext"></param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.PostMarshallResponseFeature(Microsoft.AspNetCore.Http.Features.IHttpResponseFeature,`1,Amazon.Lambda.Core.ILambdaContext)">
+            <summary>
+            This method is called after marshalling the IHttpResponseFeature that came
+            back from making the request into ASP.NET Core into the Lamdba response object. Derived classes can overwrite this method to alter
+            the how the marshalling was done.
+            </summary>
+            <param name="aspNetCoreResponseFeature"></param>
+            <param name="lambdaResponse"></param>
+            <param name="lambdaContext"></param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.MarshallRequest(Amazon.Lambda.AspNetCoreServer.Internal.InvokeFeatures,`0,Amazon.Lambda.Core.ILambdaContext)">
+            <summary>
+            Converts the Lambda request object into ASP.NET Core InvokeFeatures used to create the HostingApplication.Context.
+            </summary>
+            <param name="features"></param>
+            <param name="lambdaRequest"></param>
+            <param name="lambdaContext"></param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.AbstractAspNetCoreFunction`2.MarshallResponse(Microsoft.AspNetCore.Http.Features.IHttpResponseFeature,Amazon.Lambda.Core.ILambdaContext,System.Int32)">
+            <summary>
+            Convert the ASP.NET Core response to the Lambda response object.
+            </summary>
+            <param name="responseFeatures"></param>
+            <param name="lambdaContext"></param>
+            <param name="statusCodeIfNotSet"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction">
+            <summary>
+            APIGatewayProxyFunction is the base class for Lambda functions hosting the ASP.NET Core framework and exposed to the web via API Gateway.
+            
+            The derived class implements the Init method similar to Main function in the ASP.NET Core. The function handler for the Lambda function will point
+            to this base class FunctionHandlerAsync method.
+            </summary>
+        </member>
+        <member name="F:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction.LAMBDA_CONTEXT">
+            <summary>
+            Key to access the ILambdaContext object from the HttpContext.Items collection.
+            </summary>
+        </member>
+        <member name="F:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction.APIGATEWAY_REQUEST">
+            <summary>
+            Key to access the APIGatewayProxyRequest object from the HttpContext.Items collection.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction.AspNetCoreStartupMode">
+            <summary>
+            The modes for when the ASP.NET Core framework will be initialized.
+            </summary>
+        </member>
+        <member name="F:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction.AspNetCoreStartupMode.Constructor">
+            <summary>
+            Initialize during the construction of APIGatewayProxyFunction
+            </summary>
+        </member>
+        <member name="F:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction.AspNetCoreStartupMode.FirstRequest">
+            <summary>
+            Initialize during the first incoming request
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction.#ctor">
+            <summary>
+            Default Constructor. The ASP.NET Core Framework will be initialized as part of the construction.
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction.#ctor(Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction.AspNetCoreStartupMode)">
+            <summary>
+            
+            </summary>
+            <param name="startupMode">Configure when the ASP.NET Core framework will be initialized</param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction.#ctor(Amazon.Lambda.AspNetCoreServer.StartupMode)">
+            <summary>
+            
+            </summary>
+            <param name="startupMode">Configure when the ASP.NET Core framework will be initialized</param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction.MarshallRequest(Amazon.Lambda.AspNetCoreServer.Internal.InvokeFeatures,Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest,Amazon.Lambda.Core.ILambdaContext)">
+            <summary>
+            Convert the JSON document received from API Gateway into the InvokeFeatures object.
+            InvokeFeatures is then passed into IHttpApplication to create the ASP.NET Core request objects.
+            </summary>
+            <param name="features"></param>
+            <param name="apiGatewayRequest"></param>
+            <param name="lambdaContext"></param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction.MarshallResponse(Microsoft.AspNetCore.Http.Features.IHttpResponseFeature,Amazon.Lambda.Core.ILambdaContext,System.Int32)">
+            <summary>
+            Convert the response coming from ASP.NET Core into APIGatewayProxyResponse which is
+            serialized into the JSON object that API Gateway expects.
+            </summary>
+            <param name="responseFeatures"></param>
+            <param name="statusCodeIfNotSet">Sometimes the ASP.NET server doesn't set the status code correctly when successful, so this parameter will be used when the value is 0.</param>
+            <param name="lambdaContext"></param>
+            <returns><see cref="T:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyResponse"/></returns>
+        </member>
+        <member name="T:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction`1">
+            <summary>
+            ApiGatewayProxyFunction is the base class that is implemented in a ASP.NET Core Web API. The derived class implements
+            the Init method similar to Main function in the ASP.NET Core and provides typed Startup. The function handler for
+            the Lambda function will point to this base class FunctionHandlerAsync method.
+            </summary>
+            <typeparam name ="TStartup">The type containing the startup methods for the application.</typeparam>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction`1.#ctor">
+            <summary>
+            Default Constructor. The ASP.NET Core Framework will be initialized as part of the construction.
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction`1.#ctor(Amazon.Lambda.AspNetCoreServer.StartupMode)">
+            <summary>
+            
+            </summary>
+            <param name="startupMode">Configure when the ASP.NET Core framework will be initialized</param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction`1.CreateWebHostBuilder">
+            <inheritdoc/>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.APIGatewayProxyFunction`1.Init(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Amazon.Lambda.AspNetCoreServer.ApplicationLoadBalancerFunction">
+            <summary>
+            ApplicationLoadBalancerFunction is the base class for Lambda functions hosting the ASP.NET Core framework and exposed to the web via ELB's Application Load Balancer.
+            
+            The derived class implements the Init method similar to Main function in the ASP.NET Core. The function handler for the Lambda function will point
+            to this base class FunctionHandlerAsync method.
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.ApplicationLoadBalancerFunction.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.ApplicationLoadBalancerFunction.#ctor(Amazon.Lambda.AspNetCoreServer.StartupMode)">
+            <inheritdoc/>
+            <param name="startupMode">Configure when the ASP.NET Core framework will be initialized</param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.ApplicationLoadBalancerFunction.MarshallRequest(Amazon.Lambda.AspNetCoreServer.Internal.InvokeFeatures,Amazon.Lambda.ApplicationLoadBalancerEvents.ApplicationLoadBalancerRequest,Amazon.Lambda.Core.ILambdaContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.ApplicationLoadBalancerFunction.MarshallResponse(Microsoft.AspNetCore.Http.Features.IHttpResponseFeature,Amazon.Lambda.Core.ILambdaContext,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Amazon.Lambda.AspNetCoreServer.ApplicationLoadBalancerFunction`1">
+            <summary>
+            ApplicationLoadBalancerFunction is the base class that is implemented in a ASP.NET Core Web API. The derived class implements
+            the Init method similar to Main function in the ASP.NET Core and provides typed Startup. The function handler for
+            the Lambda function will point to this base class FunctionHandlerAsync method.
+            </summary>
+            <typeparam name ="TStartup">The type containing the startup methods for the application.</typeparam>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.ApplicationLoadBalancerFunction`1.#ctor">
+            <summary>
+            Default Constructor. The ASP.NET Core Framework will be initialized as part of the construction.
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.ApplicationLoadBalancerFunction`1.#ctor(Amazon.Lambda.AspNetCoreServer.StartupMode)">
+            <summary>
+            
+            </summary>
+            <param name="startupMode">Configure when the ASP.NET Core framework will be initialized</param>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.ApplicationLoadBalancerFunction`1.CreateWebHostBuilder">
+            <inheritdoc/>
+        </member>
+        <member name="M:Amazon.Lambda.AspNetCoreServer.ApplicationLoadBalancerFunction`1.Init(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Amazon.Lambda.AspNetCoreServer.Internal.LambdaServer">
+            <summary>
+            Implements the ASP.NET Core IServer interface and exposes the application object for the Lambda function
+            to initiate a web request.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.AspNetCoreServer.Internal.LambdaServer.Application">
+            <summary>
+            The application is used by the Lambda function to initiate a web request through the ASP.NET Core framework.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.AspNetCoreServer.Internal.Utilities">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.AspNetCoreServer.ResponseContentEncoding">
+            <summary>
+            Indicates how response content from a controller action should be treated,
+            possibly requiring a transformation to comply with the expected binary disposition.
+            </summary>
+        </member>
+        <member name="F:Amazon.Lambda.AspNetCoreServer.ResponseContentEncoding.Default">
+            Indicates the response content should already be UTF-8-friendly and should be
+            returned without any further transformation or encoding.  This typically
+            indicates a text response.
+        </member>
+        <member name="F:Amazon.Lambda.AspNetCoreServer.ResponseContentEncoding.Base64">
+            Indicates the response content should be Base64 encoded before being returned.
+            This is typically used to indicate a binary response.
+        </member>
+        <member name="T:Amazon.Lambda.AspNetCoreServer.StartupMode">
+            <summary>
+            The modes for when the ASP.NET Core framework will be initialized.
+            </summary>
+        </member>
+        <member name="F:Amazon.Lambda.AspNetCoreServer.StartupMode.Constructor">
+            <summary>
+            Initialize ASP.NET Core framework during the constructor
+            </summary>
+        </member>
+        <member name="F:Amazon.Lambda.AspNetCoreServer.StartupMode.FirstRequest">
+            <summary>
+            Initialize ASP.NET Core framework during the first incoming request
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions">
+            <summary>
+            This class is a container for extensions methods to the IWebHostBuilder
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseApiGateway(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
+            <summary>
+            Extension method for configuring API Gateway as the server for an ASP.NET Core application.
+            This is called instead of UseKestrel. If UseKestrel was called before this it will remove
+            the service description that was added to the IServiceCollection.
+            </summary>
+            <param name="hostBuilder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseLambdaServer(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
+            <summary>
+            Extension method for configuring Lambda as the server for an ASP.NET Core application.
+            This is called instead of UseKestrel. If UseKestrel was called before this it will remove
+            the service description that was added to the IServiceCollection.
+            </summary>
+            <param name="hostBuilder"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

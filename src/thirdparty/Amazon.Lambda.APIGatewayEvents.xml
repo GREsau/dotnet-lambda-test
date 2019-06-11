@@ -1,0 +1,488 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Amazon.Lambda.APIGatewayEvents</name>
+    </assembly>
+    <members>
+        <member name="T:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerContext">
+            <summary>
+            An object representing the expected format of an API Gateway custom authorizer response.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerContext.PrincipalId">
+            <summary>
+            Gets or sets the 'principalId' property.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerContext.StringKey">
+            <summary>
+            Gets or sets the 'stringKey' property.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerContext.NumKey">
+            <summary>
+            Gets or sets the 'numKey' property.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerContext.BoolKey">
+            <summary>
+            Gets or sets the 'boolKey' property.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerContext.Claims">
+            <summary>
+            Gets or sets the claims coming from Cognito
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerContextOutput">
+            <summary>
+            An object representing the expected format of an API Gateway custom authorizer response.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerContextOutput.StringKey">
+            <summary>
+            Gets or sets the 'stringKey' property.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerContextOutput.NumKey">
+            <summary>
+            Gets or sets the 'numKey' property.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerContextOutput.BoolKey">
+            <summary>
+            Gets or sets the 'boolKey' property.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerPolicy">
+            <summary>
+            An object representing an IAM policy.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerPolicy.Version">
+            <summary>
+            Gets or sets the IAM API version.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerPolicy.Statement">
+            <summary>
+            Gets or sets a list of IAM policy statements to apply.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerPolicy.IAMPolicyStatement">
+            <summary>
+            A class representing an IAM Policy Statement.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerPolicy.IAMPolicyStatement.Effect">
+            <summary>
+            Gets or sets the effect the statement has.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerPolicy.IAMPolicyStatement.Action">
+            <summary>
+            Gets or sets the action/s the statement has.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerPolicy.IAMPolicyStatement.Resource">
+            <summary>
+            Gets or sets the resources the statement applies to.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerRequest">
+            <summary>
+            For requests coming in to a custom API Gateway authorizer function.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerRequest.Type">
+            <summary>
+            Gets or sets the 'type' property.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerRequest.AuthorizationToken">
+            <summary>
+            Gets or sets the 'authorizationToken' property.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerRequest.MethodArn">
+            <summary>
+            Gets or sets the 'methodArn' property.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerRequest.Path">
+            <summary>
+            The url path for the caller. For Request type API Gateway Custom Authorizer only.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerRequest.HttpMethod">
+            <summary>
+            The HTTP method used. For Request type API Gateway Custom Authorizer only.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerRequest.Headers">
+            <summary>
+            The headers sent with the request. For Request type API Gateway Custom Authorizer only.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerRequest.QueryStringParameters">
+            <summary>
+            The query string parameters that were part of the request. For Request type API Gateway Custom Authorizer only.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerRequest.PathParameters">
+            <summary>
+            The path parameters that were part of the request. For Request type API Gateway Custom Authorizer only.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerRequest.StageVariables">
+            <summary>
+            The stage variables defined for the stage in API Gateway. For Request type API Gateway Custom Authorizer only.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerRequest.RequestContext">
+            <summary>
+            The request context for the request. For Request type API Gateway Custom Authorizer only.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerResponse">
+            <summary>
+            An object representing the expected format of an API Gateway authorization response.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerResponse.PrincipalID">
+            <summary>
+            Gets or sets the ID of the principal.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerResponse.PolicyDocument">
+            <summary>
+            Gets or sets the <see cref="T:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerPolicy"/> policy document.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerResponse.Context">
+            <summary>
+            Gets or sets the <see cref="T:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerContext"/> property.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayCustomAuthorizerResponse.UsageIdentifierKey">
+            <summary>
+            Gets or sets the usageIdentifierKey.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest">
+            <summary>
+            For request coming in from API Gateway proxy
+            http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.Resource">
+            <summary>
+            The resource path defined in API Gateway
+            <para>
+            This field is only set for REST API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.Path">
+            <summary>
+            The url path for the caller
+            <para>
+            This field is only set for REST API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.HttpMethod">
+            <summary>
+            The HTTP method used
+            <para>
+            This field is only set for REST API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.Headers">
+            <summary>
+            The headers sent with the request. This collection will only contain a single value for a header. 
+            
+            API Gateway will populate both the Headers and MultiValueHeaders collection for every request. If multiple values
+            are set for a header then the Headers collection will just contain the last value.
+            <para>
+            This field is only set for REST API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.MultiValueHeaders">
+            <summary>
+            The headers sent with the request. This collection supports multiple values for a single header.
+            
+            API Gateway will populate both the Headers and MultiValueHeaders collection for every request. If multiple values
+            are set for a header then the Headers collection will just contain the last value.
+            <para>
+            This field is only set for REST API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.QueryStringParameters">
+            <summary>
+            The query string parameters that were part of the request. This collection will only contain a single value for a query parameter.
+            
+            API Gateway will populate both the QueryStringParameters and MultiValueQueryStringParameters collection for every request. If multiple values
+            are set for a query parameter then the QueryStringParameters collection will just contain the last value.
+            <para>
+            This field is only set for REST API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.MultiValueQueryStringParameters">
+            <summary>
+            The query string parameters that were part of the request. This collection supports multiple values for a single query parameter.
+            
+            API Gateway will populate both the QueryStringParameters and MultiValueQueryStringParameters collection for every request. If multiple values
+            are set for a query parameter then the QueryStringParameters collection will just contain the last value.
+            <para>
+            This field is only set for REST API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.PathParameters">
+            <summary>
+            The path parameters that were part of the request
+            <para>
+            This field is only set for REST API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.StageVariables">
+            <summary>
+            The stage variables defined for the stage in API Gateway
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestContext">
+            <summary>
+            The request context for the request
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.Body">
+            <summary>
+            The HTTP request body.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.IsBase64Encoded">
+            <summary>
+            True if the body of the request is base 64 encoded.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext">
+            <summary>
+            The ProxyRequestContext contains the information to identify the AWS account and resources invoking the 
+            Lambda function. It also includes Cognito identity information for the caller.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.Path">
+            <summary>
+            The resource full path including the API Gateway stage
+            <para>
+            This field is only set for REST API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.AccountId">
+            <summary>
+            The account id that owns the executing Lambda function
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.ResourceId">
+            <summary>
+            The resource id.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.Stage">
+            <summary>
+            The API Gateway stage name
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.RequestId">
+            <summary>
+            The unique request id
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.Identity">
+            <summary>
+            The identity information for the request caller
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.ResourcePath">
+            <summary>
+            The resource path defined in API Gateway
+            <para>
+            This field is only set for REST API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.HttpMethod">
+            <summary>
+            The HTTP method used
+            <para>
+            This field is only set for REST API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.ApiId">
+            <summary>
+            The API Gateway rest API Id.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.ExtendedRequestId">
+            <summary>
+            An automatically generated ID for the API call, which contains more useful information for debugging/troubleshooting.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.ConnectionId">
+            <summary>
+            The connectionId identifies a unique client connection in a WebSocket API.
+            <para>
+            This field is only set for WebSocket API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.ConnectionAt">
+            <summary>
+            The Epoch-formatted connection time in a WebSocket API.
+            <para>
+            This field is only set for WebSocket API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.DomainName">
+            <summary>
+            A domain name for the WebSocket API. This can be used to make a callback to the client (instead of a hard-coded value).
+            <para>
+            This field is only set for WebSocket API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.EventType">
+            <summary>
+            The event type: CONNECT, MESSAGE, or DISCONNECT.
+            <para>
+            This field is only set for WebSocket API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.MessageId">
+            <summary>
+            A unique server-side ID for a message. Available only when the $context.eventType is MESSAGE.
+            <para>
+            This field is only set for WebSocket API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.RouteKey">
+            <summary>
+            The selected route key.
+            <para>
+            This field is only set for WebSocket API requests.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.ProxyRequestContext.Authorizer">
+            <summary>
+            The APIGatewayCustomAuthorizerContext containing the custom properties set by a custom authorizer.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity">
+            <summary>
+            The RequestIdentity contains identity information for the request caller.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity.CognitoIdentityPoolId">
+            <summary>
+            The Cognito identity pool id.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity.AccountId">
+            <summary>
+            The account id of the caller.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity.CognitoIdentityId">
+            <summary>
+            The cognito identity id.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity.Caller">
+            <summary>
+            The caller
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity.ApiKey">
+            <summary>
+            The API Key
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity.SourceIp">
+            <summary>
+            The source IP of the request
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity.CognitoAuthenticationType">
+            <summary>
+            The Cognito authentication type used for authentication
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity.CognitoAuthenticationProvider">
+            <summary>
+            The Cognito authentication provider
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity.UserArn">
+            <summary>
+            The user arn
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity.UserAgent">
+            <summary>
+            The user agent
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyRequest.RequestIdentity.User">
+            <summary>
+            The user
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyResponse">
+            <summary>
+            The response object for Lambda functions handling request from API Gateway proxy
+            http://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyResponse.StatusCode">
+            <summary>
+            The HTTP status code for the request
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyResponse.Headers">
+            <summary>
+            The Http headers return in the response. This collection supports setting single value for the same headers.
+            If both the Headers and MultiValueHeaders collections are set API Gateway will merge the collection
+            before returning back the headers to the caller.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyResponse.MultiValueHeaders">
+            <summary>
+            The Http headers return in the response. This collection supports setting multiple values for the same headers.
+            If both the Headers and MultiValueHeaders collections are set API Gateway will merge the collection
+            before returning back the headers to the caller.
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyResponse.Body">
+            <summary>
+            The response body
+            </summary>
+        </member>
+        <member name="P:Amazon.Lambda.APIGatewayEvents.APIGatewayProxyResponse.IsBase64Encoded">
+            <summary>
+            Flag indicating whether the body should be treated as a base64-encoded string
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Amazon.Lambda.Serialization.Json</name>
+    </assembly>
+    <members>
+        <member name="T:Amazon.Lambda.Serialization.Json.AwsResolver">
+            <summary>
+            Custom contract resolver for handling special event cases.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.Serialization.Json.Common">
+            <summary>
+            Common logic.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.Serialization.Json.JsonNumberToDateTimeDataConverter">
+            <summary>
+            Custom JSON converter for handling special event cases.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.Serialization.Json.JsonSerializer">
+            <summary>
+            Custom ILambdaSerializer implementation which uses Newtonsoft.Json 9.0.1
+            for serialization.
+            
+            <para>
+            If the environment variable LAMBDA_NET_SERIALIZER_DEBUG is set to true the JSON coming
+            in from Lambda and being sent back to Lambda will be logged.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.Serialization.Json.JsonSerializer.#ctor">
+            <summary>
+            Constructs instance of serializer.
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.Serialization.Json.JsonSerializer.#ctor(System.Collections.Generic.IEnumerable{Newtonsoft.Json.JsonConverter})">
+            <summary>
+            Constructs instance of serializer using custom converters.
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.Serialization.Json.JsonSerializer.Serialize``1(``0,System.IO.Stream)">
+            <summary>
+            Serializes a particular object to a stream.
+            </summary>
+            <typeparam name="T">Type of object to serialize.</typeparam>
+            <param name="response">Object to serialize.</param>
+            <param name="responseStream">Output stream.</param>
+        </member>
+        <member name="M:Amazon.Lambda.Serialization.Json.JsonSerializer.Deserialize``1(System.IO.Stream)">
+            <summary>
+            Deserializes a stream to a particular type.
+            </summary>
+            <typeparam name="T">Type of object to deserialize to.</typeparam>
+            <param name="requestStream">Stream to serialize.</param>
+            <returns>Deserialized object from stream.</returns>
+        </member>
+        <member name="T:Amazon.Lambda.Serialization.Json.JsonSerializerException">
+            <summary>
+            Exception thrown when errors occur serializing and deserializng JSON documents from the Lambda service
+            </summary>
+        </member>
+        <member name="M:Amazon.Lambda.Serialization.Json.JsonSerializerException.#ctor(System.String)">
+            <summary>
+            Constructs instances of JsonSerializerException
+            </summary>
+            <param name="message">Exception message</param>
+        </member>
+        <member name="M:Amazon.Lambda.Serialization.Json.JsonSerializerException.#ctor(System.String,System.Exception)">
+            <summary>
+            Constructs instances of JsonSerializerException
+            </summary>
+            <param name="message">Exception message</param>
+            <param name="exception">Inner exception for the JsonSerializerException</param>
+        </member>
+        <member name="T:Amazon.Lambda.Serialization.Json.JsonToMemoryStreamDataConverter">
+            <summary>
+            Custom JSON converter for handling special event cases.
+            </summary>
+        </member>
+        <member name="T:Amazon.Lambda.Serialization.Json.JsonToMemoryStreamListDataConverter">
+            <summary>
+            Custom JSON converter for handling special event cases.
+            </summary>
+        </member>
+    </members>
+</doc>

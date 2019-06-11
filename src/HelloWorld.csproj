@@ -13,10 +13,29 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="3.0.4" />
-    <PackageReference Include="Amazon.Lambda.RuntimeSupport" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0-preview5-19227-01" />
   </ItemGroup>
   
+  <ItemGroup>
+    <Reference Include="Amazon.Lambda.Core">
+      <HintPath>thirdparty/Amazon.Lambda.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Amazon.Lambda.RuntimeSupport">
+      <HintPath>thirdparty/Amazon.Lambda.RuntimeSupport.dll</HintPath>
+    </Reference>
+    <Reference Include="Amazon.Lambda.AspNetCoreServer">
+      <HintPath>thirdparty/Amazon.Lambda.AspNetCoreServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Amazon.Lambda.APIGatewayEvents">
+      <HintPath>thirdparty/Amazon.Lambda.APIGatewayEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="Amazon.Lambda.Serialization.Json">
+      <HintPath>thirdparty/Amazon.Lambda.Serialization.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Amazon.Lambda.Logging.AspNetCore">
+      <HintPath>thirdparty/Amazon.Lambda.Logging.AspNetCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
 
